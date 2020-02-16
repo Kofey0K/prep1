@@ -16,7 +16,7 @@ int main(){
 
 void PlusOne(int& value)
 {
-    for (int mask = 1; ((value ^= mask) & mask) == 0; mask <<= 1);
+    while (int mask = 1; ((value ^= mask) & mask) == 0; mask <<= 1);
 }
 bool IsSmaller(int value1, int value2)
 {
