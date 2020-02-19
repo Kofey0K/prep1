@@ -16,7 +16,11 @@ int main(){
 
 void PlusOne(int& value)
 {
-    while (int mask = 1; ((value ^= mask) & mask) == 0; mask <<= 1);
+    int i = 1;
+    while (((value ^= i) & i) == 0)
+    {
+        i <<= 1;
+    };
 }
 bool IsSmaller(int value1, int value2)
 {

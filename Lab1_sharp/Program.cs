@@ -36,7 +36,13 @@ namespace Lab1_sharp
         }
         static void PlusOne(ref int a)
         {
-            for (int i = 1; ((a ^= i) & i) == 0; i <<= 1) ;
+            //for (int i = 1; ((a ^= i) & i) == 0; i <<= 1)
+            int i = 1;
+            while (((a ^= i) & i) == 0)
+            {
+                i <<= 1;
+            }
+                
         }
     }
 }
