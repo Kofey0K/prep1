@@ -6,7 +6,7 @@ bool IsSmaller(int, int);
 
 
 int main(){
-    int value = -128;
+    int value = -127;
     PlusOne(value);
     int a1 = 33;
     int a2 = 117;

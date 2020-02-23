@@ -7,7 +7,7 @@ namespace Lab1_sharp
     {
         static void Main(string[] args)
         {
-            int a = -128;
+            int a = 7;
             PlusOne(ref a);
             bool result = IsSmaller(33, 1);
         }
@@ -45,4 +45,9 @@ namespace Lab1_sharp
                 
         }
     }
+    /*0 0 = 0
+      0 1 = 1
+      1 0 = 0
+      1 1 = 0
+     */
 }
