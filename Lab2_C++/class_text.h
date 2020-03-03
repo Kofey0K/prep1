@@ -3,14 +3,15 @@
 
 class class_text
 {
-	int size = 0;
+	int size = 1;
 	class_str* text = nullptr;
 public:
 	class_text() = default;
-	~class_text();
+
 	class_text(class_str a);
+
 	void Add(class_str a);
-	void Del();
+	void Del(class_str a);
 	void Clear();
 	int Elements()const;
 	void Replace(const char s, const char ss);

@@ -10,7 +10,11 @@ namespace Lab2_SharpLib
             
             Class_str w = new Class_str(new char[] { 'w', 'o', 'r', 'l', 'd', '3' });
             Class_text t = new Class_text(new Class_str[] { h });
+            
             t.Add(w);
+            t.Del(h);
+            int xd = t.Elements();
+
         }
 
     }

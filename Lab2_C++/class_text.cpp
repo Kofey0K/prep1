@@ -1,15 +1,7 @@
 #include "class_text.h"
 
 
-class_text::~class_text()
-{
-	for (int i = 0; i < size; i++)
-	{
-		text[i].~class_str();
-	}
-	delete[]text;
-	size = 0;
-}
+
 
 
 int class_text::HowMany( class_str s)
@@ -30,7 +22,7 @@ int class_text::HowMany( class_str s)
 
 class_text::class_text(class_str a)
 {
-	size++;
+	
 	text = new class_str[size];
 	text[0] = a;
 }
@@ -41,10 +33,28 @@ void class_text::Add(class_str a)
 	text[size - 1] = a;
 }
 
-void class_text::Del()
+void class_text::Del(class_str s)
 {
-	delete[size - 1]text;
-	size--;
+	bool k = 1;
+	int i;
+	for (i = 0; i < size; i++)
+	{
+
+		k = 1;
+		for (int j = 0; j < text[i].getSize(); j++) {
+			if (s.getChar(j) != text[i].getChar(j)) {
+				k = 0;
+			}
+		}
+		if (k == 1) break;
+	}
+	if (k == 0) return;
+
+	for (long z = i; z < size; ++z)
+		{
+			text[z] = text[z + 1];
+		}
+	--size;
 }
 
 void class_text::Clear()

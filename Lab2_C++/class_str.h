@@ -8,7 +8,7 @@ class class_str
 	char* class_Str = nullptr;
 public:
 	class_str() = default;
-	~class_str();
+
 	class_str(const char s[]);
 	void print();
 	int Find(const char s[]);

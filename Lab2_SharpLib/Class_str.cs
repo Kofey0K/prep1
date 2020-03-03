@@ -104,8 +104,29 @@ namespace Lab2_SharpLib
 			Array.Resize(ref text, text.Length + 1);
 			text[text.Length - 1] = a;
 		}
-		public void Del()
+		public void Del(Class_str s)
 		{
+			bool k = true;
+			int i;
+			for (i = 0; i < text.Length; i++)
+			{
+
+				k = true;
+				for (int j = 0; j < text[i].getSize(); j++)
+				{
+					if (s.getChar(j) != text[i].getChar(j))
+					{
+						k = false;
+					}
+				}
+				if (k) break;
+			}
+			if (k == false) return;
+
+			for (long z = i; z < text.Length; ++z)
+			{
+				text[z] = text[z + 1];
+			}
 			Array.Resize(ref text, text.Length - 1);
 		}
 		public void Clear()

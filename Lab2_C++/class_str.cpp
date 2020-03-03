@@ -1,10 +1,6 @@
 #include "class_str.h"
 
-class_str::~class_str()
-{
-	size = 0;
-	delete[]class_Str;
-}
+
 
 class_str::class_str(const char s[])
 {
@@ -15,6 +11,7 @@ class_str::class_str(const char s[])
 		class_Str[i] = s[i];
 	}
 }
+
 
 void class_str::print()
 {
