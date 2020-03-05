@@ -10,13 +10,20 @@ int main()
 	class_str aa("world 333");
 	class_text t(c);
 	t.Add(aa);
+	t.Add(aa);
 	int e = t.Elements();
-	cout << e;
+
 	t.Del(c);
 	e = t.Elements();
+
+	class_str b("world 333");
+	cout << t.HowMany(b);
+	
+	c.Replace('l', 'w');
+	c.print();
+	t.Replace('s', 'r');
+	t.Add(c);
 	cout << e;
-	class_str b("3");
-
-
+	
 
 }

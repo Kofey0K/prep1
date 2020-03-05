@@ -123,7 +123,7 @@ namespace Lab2_SharpLib
 			}
 			if (k == false) return;
 
-			for (long z = i; z < text.Length; ++z)
+			for (long z = i; z < text.Length-1; ++z)
 			{
 				text[z] = text[z + 1];
 			}
@@ -165,7 +165,7 @@ namespace Lab2_SharpLib
 		}
 		public void Replace(char s, char ss)
 		{
-			for (int i = 0; i < text.Length; i++)
+			for (int i = 0; i < text.Length-1; i++)
 			{
 				if (text[i].Replace(s, ss) == true)
 				{

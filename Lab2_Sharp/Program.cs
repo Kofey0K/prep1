@@ -14,7 +14,12 @@ namespace Lab2_SharpLib
             t.Add(w);
             t.Del(h);
             int xd = t.Elements();
-
+            Console.WriteLine(xd);
+            t.Clear();
+            t.Add(h);
+            t.Add(h);
+            t.Add(w);
+            Console.WriteLine(t.HowMany(h));
         }
 
     }

@@ -10,7 +10,7 @@ class_str::class_str(const char s[])
 	{
 		class_Str[i] = s[i];
 	}
-}
+}	
 
 
 void class_str::print()
@@ -77,7 +77,7 @@ char class_str::getChar(int i) const
 }
 
 
-bool class_str::Replace(const char s, const char ss)
+bool class_str::Replace(char s, char ss)
 {
 	for (int i = 0; i < size; i++)
 	{

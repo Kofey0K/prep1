@@ -14,7 +14,7 @@ public:
 	void Del(class_str a);
 	void Clear();
 	int Elements()const;
-	void Replace(const char s, const char ss);
+	void Replace( char s,  char ss);
 
 	int HowMany( class_str s);
 };
