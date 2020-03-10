@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <Reference Include="Lab2_SharpLib">
-      <HintPath>bin\Debug\netcoreapp3.1\Lab2_SharpLib.dll</HintPath>
+      <HintPath>..\Lab2_SharpLib\bin\Debug\Lab2_SharpLib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

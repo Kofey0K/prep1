@@ -4,26 +4,32 @@ using namespace std;
 int main()
 {
 
-	class_str a("hello");
-	a.~class_str();
+
+	char eh[4] = { 'e','l','l' };
 	class_str c("hello");
 	class_str aa("world 333");
 	class_text t(c);
+
 	t.Add(aa);
 	t.Add(aa);
 	int e = t.Elements();
+	int it2 = c.Find(eh);
+	c.Del(eh);
+	c.Add(eh);
 
 	t.Del(c);
 	e = t.Elements();
+	int it = t.Find(aa);
 
 	class_str b("world 333");
-	cout << t.HowMany(b);
-	
+
+
 	c.Replace('l', 'w');
-	c.print();
+
 	t.Replace('s', 'r');
+	t.Replace('l', 'e');
 	t.Add(c);
 	cout << e;
-	
+
 
 }

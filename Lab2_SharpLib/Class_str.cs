@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lab2_SharpLib
 {
-    public class Class_str
-    {
+	public class Class_str
+	{
 		private char[] class_Str;
 		public Class_str(char[] s)
 		{
@@ -123,7 +123,7 @@ namespace Lab2_SharpLib
 			}
 			if (k == false) return;
 
-			for (long z = i; z < text.Length-1; ++z)
+			for (long z = i; z < text.Length - 1; ++z)
 			{
 				text[z] = text[z + 1];
 			}
@@ -165,7 +165,7 @@ namespace Lab2_SharpLib
 		}
 		public void Replace(char s, char ss)
 		{
-			for (int i = 0; i < text.Length-1; i++)
+			for (int i = 0; i < text.Length - 1; i++)
 			{
 				if (text[i].Replace(s, ss) == true)
 				{
@@ -174,4 +174,4 @@ namespace Lab2_SharpLib
 			}
 		}
 	}
-	}
+}
