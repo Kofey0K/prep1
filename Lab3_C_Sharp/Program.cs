@@ -7,20 +7,20 @@ namespace oop_lab3
         static void Main(string[] args)
         {
             Text one = new Text(2,2);
-            one.Add(0, 0, '1');
+            one.Add(0, 0, 'r');
             one.Add(0, 1, 'a');
             one.Add(1, 0, '2');
             one.Add(1, 1, 'b');
-            Console.WriteLine(one.IntCount);
-            Console.WriteLine(one[0]);
-            Console.WriteLine(one[1]);
+            int test1 = one.IntCount;
+            string test2 = one[0];
+            string test3 = one[1];
 
         }
     }
 
     class Text
     {
-        readonly char[,] text;
+        private char[,] text;
         private int intCount;
         private string output;
 
@@ -33,11 +33,9 @@ namespace oop_lab3
         {
             text[row,column] = value;
             if (value >= 48 && value <= 57) intCount++;
-            return;
         }
         public string this[int index]
         {
-
             get
             {
                 output = "";
