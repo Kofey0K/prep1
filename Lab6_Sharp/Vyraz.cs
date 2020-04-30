@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace Lab6_Sharp
 {
@@ -33,6 +34,11 @@ namespace Lab6_Sharp
             }
             catch (Exception e)
             {
+                
+                using (StreamWriter logExp = new StreamWriter(@"D:\DZ\OOP\prep1\Lab6_Sharp\LogFile.txt", true, System.Text.Encoding.Default))
+                {
+                    logExp.WriteLine(e.Message);
+                }
                 Console.WriteLine(e.Message);
             }
             return -1;
@@ -49,6 +55,10 @@ namespace Lab6_Sharp
             }
             catch (Exception e)
             {
+                using (StreamWriter logExp = new StreamWriter(@"D:\DZ\OOP\prep1\Lab6_Sharp\LogFile.txt", true, System.Text.Encoding.Default))
+                {
+                    logExp.WriteLine(e.Message);
+                }
                 Console.WriteLine(e.Message);
             }
             return -1;

@@ -4,6 +4,7 @@
 
 int main()
 {
+    
     Vyraz example[] = { Vyraz(),  Vyraz(1, 2, 0, 42),  Vyraz(0, 0, 0, 41) };
     example[0].setA(1);
     example[0].setB(2);

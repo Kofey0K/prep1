@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include <iostream>
+#include <fstream>
 class Vyraz
 {
 private:
@@ -27,6 +28,12 @@ public:
         }
         catch (std::runtime_error er)
         {
+            std::ofstream out("log.txt", std::ios::app);
+            if (out.is_open())
+            {
+                out << er.what() << std::endl;
+            }
+            out.close();
             std::cout << er.what() << "\n";
         }
         return -1;
@@ -43,8 +50,17 @@ public:
         }
         catch (std::runtime_error er)
         {
+            throw std::runtime_error("Division by zero.");
+            std::ofstream out("log.txt", std::ios::app);
+            if (out.is_open())
+            {
+                out << er.what() << std::endl;
+            }
+            out.close();
             std::cout << er.what() << "\n";
         }
+        
+        
         return -1;
     }
     double getA() { return a; }
