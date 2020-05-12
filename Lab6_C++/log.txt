@@ -1,8 +1,2 @@
 Square root of a negative number was taken.
 Division by zero.
-Square root of a negative number was taken.
-Division by zero.
-Square root of a negative number was taken.
-Division by zero.
-Square root of a negative number was taken.
-Division by zero.
