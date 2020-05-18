@@ -16,13 +16,13 @@ namespace Lab8_Sharp
             Tariff1.UseInternet(3.4);
             Tariff1.Check();
 
-            double[] a = new double[1];
-            double[] b = new double[1];
-            a[0] = 2;
-            b[0] = 2;
-            Tariff1.CompareExemplary(a, b, 0);
+            double[] nums2 = new double[4] { 1, 2, 3, 5 };
+
+            double[] nums3 = new double[] { 1, 2, 3, 5 };
+
+            Console.WriteLine(Tariff1.CompareExemplary(nums2, nums3, 0) ); 
             Lib.EqualityDelegate my_delegate = Lib.Compare;
-            Console.WriteLine(my_delegate(a,b,0));
+            Console.WriteLine(my_delegate(nums2,nums3,0));
         }
     }
 }
