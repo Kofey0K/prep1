@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Hospital_Lib.Person">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Hospital_Lib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hospital_Lib.Patient">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAFAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Hospital_Lib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hospital_Lib.Doctor">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Hospital_Lib.Doctor.LogHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Hospital_Lib.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAABAIAAAQEACAABAAAEACAAAAAA=</HashCode>
+      <FileName>Hospital_Lib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hospital_Lib.WorkSchedule">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Hospital_Lib.WorkSchedule.Shift" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Hospital_Lib.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAIAAAAAAAAAAAgAIAAQAAAAAAAQAAA=</HashCode>
+      <FileName>Hospital_Lib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hospital_Lib.Hospital">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAACAAAAAAAAgAAAAAAAAI=</HashCode>
+      <FileName>Hospital_Lib.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
