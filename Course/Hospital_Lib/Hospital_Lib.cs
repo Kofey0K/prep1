@@ -120,6 +120,7 @@ namespace Hospital_Lib
                         string Diagnosis = Console.ReadLine();
                         File.WriteAllText(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards\Card_" + patient.Name + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + ".txt", "Appointment card\nDcotor: " + Specialty + " " + Name + "\nPatient: " + patient.Name + "\nVisiting time: " + time1 + " - " + DateTime.Now.TimeOfDay + "\nDiagnosis: " + Diagnosis);
                         patient.Diagnosis = Diagnosis;
+                        Console.WriteLine("Successfully created an appointment card! You can find it in the folder Cards.");
                     }
                 }
                 else
@@ -179,6 +180,9 @@ namespace Hospital_Lib
                 StreamWriter sw = new StreamWriter(@"D:\DZ\OOP\prep1\Course\Hospital_program\Doctors\" + Name + ".txt", true, Encoding.Default);
                 sw.WriteLine(date);
                 sw.Close();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nAppointment successfully booked!");
+                Console.ResetColor();
             }
         }
         public bool CheckAppointment(DateTime date)
@@ -187,7 +191,7 @@ namespace Hospital_Lib
         }
     }
 
-    public class WorkSchedule
+    public class WorkSchedule:IContains
     {
         public enum Shift { Day, Night };
         public Shift shift;
@@ -383,7 +387,7 @@ namespace Hospital_Lib
                         Console.WriteLine("Enter the date of the appointment. Example: 21.05.2020 15:00::00");
                         string[] dates_int5 = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
                         Doc(doctor5).BookTime(new DateTime(int.Parse(dates_int5[2]), int.Parse(dates_int5[1]), int.Parse(dates_int5[0]), int.Parse(dates_int5[3]), int.Parse(dates_int5[4]), int.Parse(dates_int5[5])));
-                        Console.WriteLine("\nAppointment successfully booked!");
+                        
                         break;
                     case "6":
                         Console.WriteLine("Enter the doctor's full name.");
@@ -411,7 +415,7 @@ namespace Hospital_Lib
                         Console.WriteLine("\nWho does the patient want to see? Enter full name of the doctor.");
                         string doctor7 = Console.ReadLine();
                         new_patient.SeeDoctor(Doc(doctor7));
-                        Console.WriteLine("Successfully created an appointment card! You can find it in the folder Cards.");
+                        
                         break;
                     case "q":
                         next = false;

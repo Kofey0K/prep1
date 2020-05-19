@@ -41,6 +41,7 @@
       <HashCode>AAAAAAAACAAAAAIAAAAAAAAAAAgAIAAQAAAAAAAQAAA=</HashCode>
       <FileName>Hospital_Lib.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Hospital_Lib.Hospital">
     <Position X="10.5" Y="1.75" Width="1.5" />

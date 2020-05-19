@@ -1,5 +1,0 @@
-Appointment card
-Dcotor: Neurologist Kumenko Grygori Ivanovich
-Patient: Apex
-Visiting time: 21:03:59.6498116 - 21:05:36.2096747
-Diagnosis: 5 season
