@@ -411,6 +411,7 @@ namespace Hospital_Lib
                         Console.WriteLine("\nWho does the patient want to see? Enter full name of the doctor.");
                         string doctor7 = Console.ReadLine();
                         new_patient.SeeDoctor(Doc(doctor7));
+                        Console.WriteLine("Successfully created an appointment card! You can find it in the folder Cards.");
                         break;
                     case "q":
                         next = false;

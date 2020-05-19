@@ -1,0 +1,5 @@
+Appointment card
+Dcotor: Therapist Ivasiuk Andrei Leonidovich
+Patient: Paul
+Visiting time: 15:04:12.8956182 - 15:04:42.8050258
+Diagnosis: Cold
