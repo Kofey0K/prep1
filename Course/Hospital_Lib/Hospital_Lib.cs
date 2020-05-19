@@ -101,14 +101,26 @@ namespace Hospital_Lib
             {
                 if (IsFree())
                 {
-                    Directory.CreateDirectory(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards");
-                    TimeSpan time1 = DateTime.Now.TimeOfDay;
-                    Console.WriteLine("Type something in if you have returned.");
-                    Console.ReadLine();
-                    Console.WriteLine("What was the Diagnosis?");
-                    string Diagnosis = Console.ReadLine();
-                    File.WriteAllText(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards\Card_" + patient.Name + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + ".txt", "Appointment card\nDcotor: " + Specialty + " " + Name + "\nPatient: " + patient.Name + "\nVisiting time: " + time1 + " - " + DateTime.Now.TimeOfDay + "\nDiagnosis: " + Diagnosis);
-                    patient.Diagnosis = Diagnosis;
+                    bool appointment = true;
+                    for (int i = 0; i < Appointments.Count; i++)
+                    {
+                        if (DateTime.Now > Appointments[i] - new TimeSpan(0, 30, 0) && DateTime.Now < Appointments[i] + new TimeSpan(0, 30, 0))
+                        {
+                            Notify?.Invoke("The doctor has an appointment at the moment. The patient can wait in the queue.");
+                            appointment =  false;
+                        }
+                    }
+                    if (appointment)
+                    {
+                        Directory.CreateDirectory(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards");
+                        TimeSpan time1 = DateTime.Now.TimeOfDay;
+                        Console.WriteLine("Type something in if you have returned.");
+                        Console.ReadLine();
+                        Console.WriteLine("What was the Diagnosis?");
+                        string Diagnosis = Console.ReadLine();
+                        File.WriteAllText(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards\Card_" + patient.Name + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + ".txt", "Appointment card\nDcotor: " + Specialty + " " + Name + "\nPatient: " + patient.Name + "\nVisiting time: " + time1 + " - " + DateTime.Now.TimeOfDay + "\nDiagnosis: " + Diagnosis);
+                        patient.Diagnosis = Diagnosis;
+                    }
                 }
                 else
                 {
@@ -150,7 +162,7 @@ namespace Hospital_Lib
             }
             for (i = 0; i < Appointments.Count; i++)
             {
-                if (date > Appointments[i] && date < Appointments[i] + new TimeSpan(1, 0, 0))
+                if (date > Appointments[i] - new TimeSpan(0, 30, 0) && date < Appointments[i] + new TimeSpan(0, 30, 0))
                 {
                     Notify?.Invoke("The chosen time is already taken.");
                     return false;
@@ -397,7 +409,8 @@ namespace Hospital_Lib
                         string troubles = Console.ReadLine();
                         Patient new_patient = new Patient(name, age, troubles);
                         Console.WriteLine("\nWho does the patient want to see? Enter full name of the doctor.");
-                        new_patient.SeeDoctor(Doc(Console.ReadLine()));
+                        string doctor7 = Console.ReadLine();
+                        new_patient.SeeDoctor(Doc(doctor7));
                         break;
                     case "q":
                         next = false;
