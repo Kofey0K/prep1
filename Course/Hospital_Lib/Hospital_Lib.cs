@@ -118,7 +118,7 @@ namespace Hospital_Lib
                         Console.ReadLine();
                         Console.WriteLine("What was the Diagnosis?");
                         string Diagnosis = Console.ReadLine();
-                        File.WriteAllText(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards\Card_" + patient.Name + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + ".txt", "Appointment card\nDcotor: " + Specialty + " " + Name + "\nPatient: " + patient.Name + "\nVisiting time: " + time1 + " - " + DateTime.Now.TimeOfDay + "\nDiagnosis: " + Diagnosis);
+                        File.WriteAllText(@"D:\DZ\OOP\prep1\Course\Hospital_program\Cards\Card_" + patient.Name + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + ".txt", "Appointment card\nDoctor: " + Specialty + " " + Name + "\nPatient: " + patient.Name + "\nVisiting time: " + time1 + " - " + DateTime.Now.TimeOfDay + "\nDiagnosis: " + Diagnosis);
                         patient.Diagnosis = Diagnosis;
                         Console.WriteLine("Successfully created an appointment card! You can find it in the folder Cards.");
                     }
@@ -140,7 +140,7 @@ namespace Hospital_Lib
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
-            StreamWriter sw = new StreamWriter(@"D:\DZ\OOP\prep1\Course\Hospital_program\logs\logs.txt", true, Encoding.Default);
+            StreamWriter sw = new StreamWriter(@"D:\DZ\OOP\prep1\Course\Hospital_program\logs\logs_"+DateTime.Now.Day+"_"+ DateTime.Now.Month+".txt", true, Encoding.Default);
             sw.WriteLine(message + "   " + DateTime.Now.TimeOfDay);
             sw.Close();
         };
@@ -287,18 +287,60 @@ namespace Hospital_Lib
 
         private static void HireDoctor()
         {
+            
             Console.WriteLine("What is the doctor's name?");
             string name = Console.ReadLine();
             Console.WriteLine("What is the doctor's age?");
-            int age = int.Parse(Console.ReadLine());
-            Console.WriteLine("What is " + name + "'s specialty?");
+            string input = Console.ReadLine();
+            int age;
+            bool isParsable = int.TryParse(input, out age);
+            while (!isParsable)
+            {
+                Console.WriteLine("Error! Please enter a number. ");
+                input = Console.ReadLine();
+                isParsable = int.TryParse(input, out age);
+            }
+            Console.WriteLine("What is " + name + "'s specialty? Please enter 1 (one) word.");
             string Specialty = Console.ReadLine();
+            while (Specialty.Contains(" "))
+            {
+                Console.WriteLine("Error! Please enter a single word. ");
+                Specialty = Console.ReadLine();
+            }
             Console.WriteLine("How many work hours will they have?");
-            int hours = int.Parse(Console.ReadLine());
+            input = Console.ReadLine();
+            
+            isParsable = int.TryParse(input, out int hours);
+            while (!isParsable)
+            {
+                Console.WriteLine("Error! Please enter a number. ");
+                input = Console.ReadLine();
+                isParsable = int.TryParse(input, out hours);
+            }
+            
             Console.WriteLine("At what time does the doctor's work start? Example: 08:30:00");
             string[] Start_time = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+            while (Start_time.Length != 3)
+            {
+                Console.WriteLine("Error! Wrong input.");
+                Start_time = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            bool again = true;
             Console.WriteLine("And finally on what days will they work?");
             string[] input_Days = Console.ReadLine().Split(new char[] { ' ', '.', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            while (again)
+            {
+                input_Days = Console.ReadLine().Split(new char[] { ' ', '.', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < input_Days.Length; i++)
+                {
+                    if (input_Days[i] != "Monday" && input_Days[i] != "Tuesday" && input_Days[i] != "Wednesday" && input_Days[i] != "Thursday" && input_Days[i] != "Friday" && input_Days[i] != "Sunday" && input_Days[i] != "Saturday")
+                    {
+                        Console.WriteLine("Wrong data entered! Please try again.");
+                        continue;
+                    }
+                }
+                again = false;
+            }
             DayOfWeek[] Days = new DayOfWeek[input_Days.Length];
             for (int i = 0; i < input_Days.Length; i++)
             {
@@ -351,8 +393,31 @@ namespace Hospital_Lib
                     case "2":
                         Console.WriteLine("\nEnter the doctor's full name.");
                         string doctor = Console.ReadLine();
-                        Console.WriteLine("\nEnter the date of the appointment. Example: 21.05.2020 15:00::00");
+                        if (Doc(doctor) == null)
+                        {
+                            Console.WriteLine("There is no such doctor " + doctor + "!");
+                            break;
+                        }
+                        Console.WriteLine("\nEnter the date of the appointment. Example: 21.05.2020 15:00:00");
                         string[] dates_int = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                        bool b=true;
+                        while (b) {
+                            b = false;
+                            while (dates_int.Length != 6)
+                            {
+                                Console.WriteLine("Error! Wrong input.");
+                                dates_int = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                            }
+
+                            for (int i = 0; i < 6; i++)
+                            {
+                                if (!int.TryParse(dates_int[i], out _)){
+                                    Console.WriteLine("Error! Please enter your date as in example. ");
+                                    b = true;
+                                    break;
+                                }
+                            }
+                        }
                         if (Doc(doctor).CheckAppointment(new DateTime(int.Parse(dates_int[2]), int.Parse(dates_int[1]), int.Parse(dates_int[0]), int.Parse(dates_int[3]), int.Parse(dates_int[4]), int.Parse(dates_int[5]))))
                         {
                             Console.WriteLine("\nYes. There is such an appointment.");
@@ -375,6 +440,11 @@ namespace Hospital_Lib
                     case "4":
                         Console.WriteLine("Enter the doctor's full name.");
                         string doctor4 = Console.ReadLine();
+                        if (Doc(doctor4) == null)
+                        {
+                            Console.WriteLine("There is no such doctor "+doctor4+"!");
+                            break;
+                        }
                         if (Doc(doctor4).IsFree())
                         {
                             Console.WriteLine("Yes, " + doctor4 + " is present. The patient may also see the doctor's appointments or visit the doctor.");
@@ -384,14 +454,62 @@ namespace Hospital_Lib
                     case "5":
                         Console.WriteLine("Enter the doctor's full name.");
                         string doctor5 = Console.ReadLine();
+                        if (Doc(doctor5) == null)
+                        {
+                            Console.WriteLine("There is no such doctor " + doctor5 + "!");
+                            break;
+                        }
                         Console.WriteLine("Enter the date of the appointment. Example: 21.05.2020 15:00::00");
-                        string[] dates_int5 = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] dates_int5;
+                        
+                        dates_int5 = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                        bool errors = false;
+                        while (dates_int5.Length != 6)
+                        {
+                            Console.WriteLine("Error! Wrong input.");
+                            dates_int5 = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                        }
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            if (!int.TryParse(dates_int5[i], out _))
+                            {
+                                Console.WriteLine("Error! Please enter your date as in example. ");
+                                errors = true;
+                                break;
+                            }
+                        }
+                        while (errors)
+                        {
+                            dates_int5= Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                            errors = false;
+                            while (dates_int5.Length != 6)
+                            {
+                                Console.WriteLine("Error! Wrong input.");
+                                dates_int5 = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                            }
+
+                            for (int i = 0; i < 6; i++)
+                            {
+                                if (!int.TryParse(dates_int5[i], out _))
+                                {
+                                    Console.WriteLine("Error! Please enter your date as in example. ");
+                                    errors = true;
+                                    break;
+                                }
+                            }
+                        }
                         Doc(doctor5).BookTime(new DateTime(int.Parse(dates_int5[2]), int.Parse(dates_int5[1]), int.Parse(dates_int5[0]), int.Parse(dates_int5[3]), int.Parse(dates_int5[4]), int.Parse(dates_int5[5])));
                         
                         break;
                     case "6":
                         Console.WriteLine("Enter the doctor's full name.");
                         string doctor6 = Console.ReadLine();
+                        if (Doc(doctor6) == null)
+                        {
+                            Console.WriteLine("There is no such doctor " + doctor6 + "!");
+                            break;
+                        }
                         if (Doc(doctor6).Appointments.Count == 0) { Console.WriteLine(doctor6 + " doesn't have any appointments yet!"); }
                         else
                         {
@@ -408,12 +526,26 @@ namespace Hospital_Lib
                         Console.Write("Name:");
                         string name = Console.ReadLine();
                         Console.Write("\nAge:");
-                        int age = int.Parse(Console.ReadLine());
+                        string input7;
+                        input7 = Console.ReadLine();
+                        int age7;
+                        bool isParsable7 = int.TryParse(input7, out age7);
+                        while (!isParsable7)
+                        {
+                            Console.WriteLine("Error! Please enter a number. ");
+                            input7 = Console.ReadLine();
+                            isParsable7 = int.TryParse(input7, out age7);
+                        }
                         Console.Write("\nTroubles:");
                         string troubles = Console.ReadLine();
-                        Patient new_patient = new Patient(name, age, troubles);
+                        Patient new_patient = new Patient(name, age7, troubles);
                         Console.WriteLine("\nWho does the patient want to see? Enter full name of the doctor.");
                         string doctor7 = Console.ReadLine();
+                        while (Doc(doctor7) == null)
+                        {
+                            Console.WriteLine("There is no such doctor " + doctor7 + "! Please try again.");
+                            doctor7 = Console.ReadLine();
+                        }
                         new_patient.SeeDoctor(Doc(doctor7));
                         
                         break;
