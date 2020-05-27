@@ -4,3 +4,5 @@ Kit Evgen Romanovich doesn't work at the chosen time of the day.   13:15:22.7797
 Kit Evgen Romanovich doesn't work at the chosen time of the day.   14:02:32.8927907
 Doctor Kit Evgen Romanovich isn't present at the moment.   14:42:28.4766590
 The chosen time is already taken.   14:51:43.4213863
+Churai Andrei Mikhaylovich doesn't work at the chosen time of the day.   21:48:32.6100526
+Doctor Ivasiuk Andrei Leonidovich isn't present at the moment.   22:48:14.2983281

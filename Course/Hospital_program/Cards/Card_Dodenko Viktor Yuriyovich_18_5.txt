@@ -1,5 +1,5 @@
 Appointment card
-Dcotor: Neurologist Kumenko Grygori Ivanovich
+Doctor: Neurologist Kumenko Grygori Ivanovich
 Patient: Dodenko Viktor Yuriyovich
 Visiting time: 20:43:34.1247712 - 20:44:29.1579527
 Diagnosis: Flu

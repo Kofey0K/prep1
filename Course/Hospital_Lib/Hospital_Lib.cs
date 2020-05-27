@@ -133,6 +133,11 @@ namespace Hospital_Lib
                 Notify?.Invoke(e.Message);
             }
         }
+        public static Doctor operator +(Doctor doctor, DateTime date)
+        {
+            doctor.BookTime(date);
+            return doctor;
+        }
         public delegate void LogHandler(string message);
         public static event LogHandler Notify = (string message) =>
         {
@@ -320,27 +325,45 @@ namespace Hospital_Lib
             
             Console.WriteLine("At what time does the doctor's work start? Example: 08:30:00");
             string[] Start_time = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
-            while (Start_time.Length != 3)
+            
+            bool num = true;
+            while (num)
             {
-                Console.WriteLine("Error! Wrong input.");
-                Start_time = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                num = false;
+                while (Start_time.Length != 3)
+                {
+                    Console.WriteLine("Error! Wrong input.");
+                    Start_time = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!int.TryParse(Start_time[i], out _))
+                    {
+                        Console.WriteLine("Error! Please enter your date as in example. ");
+                        num = true;
+                        break;
+                    }
+                }
             }
-            bool again = true;
+            bool again;
             Console.WriteLine("And finally on what days will they work?");
-            string[] input_Days = Console.ReadLine().Split(new char[] { ' ', '.', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-            while (again)
+            string[] input_Days;
+            do
             {
+                again = false;
                 input_Days = Console.ReadLine().Split(new char[] { ' ', '.', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < input_Days.Length; i++)
                 {
                     if (input_Days[i] != "Monday" && input_Days[i] != "Tuesday" && input_Days[i] != "Wednesday" && input_Days[i] != "Thursday" && input_Days[i] != "Friday" && input_Days[i] != "Sunday" && input_Days[i] != "Saturday")
                     {
                         Console.WriteLine("Wrong data entered! Please try again.");
-                        continue;
+                        again = true;
+                        break;
                     }
                 }
-                again = false;
-            }
+                
+            } while (again) ;
             DayOfWeek[] Days = new DayOfWeek[input_Days.Length];
             for (int i = 0; i < input_Days.Length; i++)
             {
@@ -399,9 +422,10 @@ namespace Hospital_Lib
                             break;
                         }
                         Console.WriteLine("\nEnter the date of the appointment. Example: 21.05.2020 15:00:00");
-                        string[] dates_int = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
-                        bool b=true;
-                        while (b) {
+                        string[] dates_int;
+                        bool b;
+                        do {
+                            dates_int = Console.ReadLine().Split(new char[] { ' ', '.', ':' }, StringSplitOptions.RemoveEmptyEntries);
                             b = false;
                             while (dates_int.Length != 6)
                             {
@@ -417,8 +441,8 @@ namespace Hospital_Lib
                                     break;
                                 }
                             }
-                        }
-                        if (Doc(doctor).CheckAppointment(new DateTime(int.Parse(dates_int[2]), int.Parse(dates_int[1]), int.Parse(dates_int[0]), int.Parse(dates_int[3]), int.Parse(dates_int[4]), int.Parse(dates_int[5]))))
+                        } while (b) ;
+                            if (Doc(doctor).CheckAppointment(new DateTime(int.Parse(dates_int[2]), int.Parse(dates_int[1]), int.Parse(dates_int[0]), int.Parse(dates_int[3]), int.Parse(dates_int[4]), int.Parse(dates_int[5]))))
                         {
                             Console.WriteLine("\nYes. There is such an appointment.");
                         }
@@ -499,7 +523,7 @@ namespace Hospital_Lib
                                 }
                             }
                         }
-                        Doc(doctor5).BookTime(new DateTime(int.Parse(dates_int5[2]), int.Parse(dates_int5[1]), int.Parse(dates_int5[0]), int.Parse(dates_int5[3]), int.Parse(dates_int5[4]), int.Parse(dates_int5[5])));
+                        _ = Doc(doctor5) + new DateTime(int.Parse(dates_int5[2]), int.Parse(dates_int5[1]), int.Parse(dates_int5[0]), int.Parse(dates_int5[3]), int.Parse(dates_int5[4]), int.Parse(dates_int5[5]));
                         
                         break;
                     case "6":
