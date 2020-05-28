@@ -154,6 +154,7 @@ int main()
     AddFirst(&head, 15);
     AddFirst(&head, 17);
     AddFirst(&head, 6);
+    AddFirst(&head, 155);
     printList(head);
     cout << endl;
     double av = Average(head);

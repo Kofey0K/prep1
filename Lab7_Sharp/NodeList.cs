@@ -109,6 +109,7 @@ namespace Lab7_Sharp
             {
                 current = current.Next;
             }
+            current = current.Next;
             while (current != null)
             {
                 Delete(current.Data);
